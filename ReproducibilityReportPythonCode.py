@@ -106,6 +106,10 @@ def generateSyntheticData():
     priorUpper = spsp.expit(sps.laplace.ppf(upperQuant, loc=priorMean, scale=priorScale))
 
     lgDict = util.testresultsfiletotable(testingDataList, csvName=False)
+    # Print data matrices
+    print(lgDict['N'])
+    print(lgDict['Y'])
+
     print('size: '+str(lgDict['N'].shape)+', obsvns: '+str(lgDict['N'].sum())+', propor pos: '+str(lgDict['Y'].sum() / lgDict['N'].sum()))
     lgDict.update({'diagSens': 1.0, 'diagSpec': 1.0, 'numPostSamples': numPostSamps,
                    'prior': methods.prior_laplace(mu=priorMean, scale=priorScale), 'MCMCdict': MCMCdict})
